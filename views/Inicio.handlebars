@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Market</title>
+  <!--Bootstrap CSS-->
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<!-- jQuery -->
+<script src="/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+
+<!--NavBar-->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Mini Market🏪</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<!--Bienvenida-->
+<section class="pt-2 container-fluid text-center">
+  <div class="card">
+    <h2 class="card-header"><strong>Bienvenidos a Mini Market🏪</strong></h2>
+    <div class="card-body">
+      <h5 class="card-title">Categoría</h5>
+      <p class="card-text">Acontinuación podrá elegir alguno de nuestros productos en stock.</p>
+      <a href="#" class="btn btn-primary">Go Knowhere</a>
+    </div>
+  </div>
+</section>
+
+
+<!--Menú traido de menu.handlebars-->
+{{> menu}}
+
+{{!-- <!--Dashboard-->
+{{> Dashboard}} --}}
+
+
+<!--Productos de menu.handlebars-->
+
+{{#each frutas}}
+{{> producto nombre=this}}
+{{/each}}
+
+<!--Modal-->
+<section class="container-fluid">
+  <div class="container mt-5">
+    <h1 class="text-center">Selecciona una fruta</h1>
+    <div class="row mt-3">
+      <!-- Iterar sobre el arreglo de frutas y mostrarlas como imágenes -->
+      {{#each frutas}}
+      <div class="col-md-3 mb-3">
+        <img src="/{{this}}.png" alt="{{this}}" class="img-fluid rounded" data-fruta="{{this}}" data-toggle="modal"
+          data-target="#frutaModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{this}}Modal">
+          {{this}}
+        </button>
+      </div>
+      {{/each}}
+
+    </div>
+  </div>
+</section>
+
+ 
+{{!-- Iterar sobre la lista de frutas y mostrar los botones y los modales
+{{#each frutas}}
+<!-- Botón para la fruta -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{this}}Modal">
+  {{this}}
+</button> --}}
+
+<!-- Modal para la fruta seleccionada -->
+<div class="modal fade" id="{{this}}Modal" tabindex="-1" role="dialog" aria-labelledby="{{this}}ModalLabel"
+  aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="{{this}}ModalLabel">Fruta Seleccionada</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="{{this}}Seleccionada"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+
+  <!-- Maneja la seleccion y visualizacion de las Frutas -->
+  <script>
+   $(document).ready(function () {
+      // Maneja el clic en la imagen de la fruta
+      $('.fruta-img').click(function () {
+        var fruta = $(this).data('fruta');
+        $('#frutaSeleccionada').html(`<img src="/${fruta}.png" alt="${fruta}" class="img-fluid">`);
+        $('#frutaModal').modal('show');
+      });
+
+      // Maneja el clic en el botón de la fruta
+      $('.fruta-btn').click(function () {
+        var fruta = $(this).data('fruta');
+        $('#frutaSeleccionada').html(`<img src="/${fruta}.png" alt="${fruta}" class="img-fluid">`);
+        $('#frutaModal').modal('show');
+      });
+    });
+
+  </script>
+
+  <!-- Bootstrap JS bundle-->
+<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
