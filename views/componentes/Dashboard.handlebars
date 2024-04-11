@@ -1,10 +1,15 @@
-<!-- Dashboard -->
-<div class="dashboard">
-  <h2>Productos disponibles:</h2>
-  <ul>
-    {{#each frutas}}
-    <li>{{this}}</li>
-    {{/each}}
-  </ul>
-</div>
-
+<!-- dashboard.handlebars -->
+<section>
+  <div class="container">
+    <div class="row">
+      {{#each productos}}
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+        <div class="producto">
+          <img src="/{{this}}.png" alt="{{this}}" class="img-fluid">
+          <p class="text-center mt-2">{{this}}</p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>

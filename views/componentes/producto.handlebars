@@ -1,12 +1,13 @@
-
 <section>
-<!-- Producto -->
-<div class="producto">
-  <img src="/{{this}}.png" alt="{{this}}" class="img-fluid fruta-img" data-fruta="{{this}}" data-toggle="modal"
-    data-target="#{{this}}Modal">
-  <button type="button" class="btn btn-primary fruta-btn" data-toggle="modal" data-target="#{{this}}Modal">
-    {{this}}
-  </button>
-</div>
-
+  <!-- Parcial principal -->
+  <div class="main-section">
+    <!-- Renderiza el mensaje de bienvenida usando el helper -->
+    {{msjBienvenida}}
+    <!-- Parcial para mostrar un producto -->
+    <div class="producto">
+      {{#each productos}}
+      <h3>{{this}}</h3>
+      {{/each}}
+    </div>
+  </div>
 </section>
